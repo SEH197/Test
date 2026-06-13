@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Onze Bruiloft</title>
+
+<style>
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    color: #333;
+}
+
+header {
+    height: 100vh;
+    background: url('https://images.unsplash.com/photo-1529634792982-8c09a3f8e4ff') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin: 0;
+}
+
+header p {
+    font-size: 1.5rem;
+}
+
+section {
+    padding: 60px 20px;
+    max-width: 900px;
+    margin: auto;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.event {
+    border-left: 3px solid #c89b6d;
+    padding-left: 15px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 10px;
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.rsvp {
+    text-align: center;
+}
+
+button {
+    padding: 12px 20px;
+    background: #c89b6d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    background: #f5f5f5;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+    <div>
+        <h1>Nouri & Partner</h1>
+        <p>Wij gaan trouwen — 12 september 2026</p>
+    </div>
+</header>
+
+<section>
+    <h2>Ons Verhaal</h2>
+    <p>
+        Hier komt jullie verhaal. Hoe jullie elkaar hebben ontmoet, het aanzoek,
+        en waarom deze dag zo bijzonder is.
+    </p>
+</section>
+
+<section>
+    <h2>Dagplanning</h2>
+    <div class="timeline">
+        <div class="event">
+            <strong>13:00</strong> Ceremonie
+        </div>
+        <div class="event">
+            <strong>15:00</strong> Receptie
+        </div>
+        <div class="event">
+            <strong>18:00</strong> Diner
+        </div>
+        <div class="event">
+            <strong>21:00</strong> Feest
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Locatie</h2>
+    <p>
+        Trouwlocatie naam<br>
+        Straat 123, Rotterdam
+    </p>
+</section>
+
+<section>
+    <h2>Galerij</h2>
+    <div class="gallery">
+        https://images.unsplash.com/photo-1511285560929-80b456fea0bc
+        https://images.unsplash.com/photo-1507504031003-b417219a0fde
+        https://images.unsplash.com/photo-1503342217505-b0a15ec3261c
+    </div>
+</section>
+
+<section class="rsvp">
+    <h2>RSVP</h2>
+    <p>Laat ons weten of je erbij bent</p>
+    <button>Aanmelden</button>
+</section>
+
+<footer>
+    <p>© 2026 Nouri & Partner</p>
+</footer>
+
+</body>
+</html>
