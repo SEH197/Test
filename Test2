@@ -1,152 +1,734 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Onze Bruiloft</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nouri & [Naam] | Bruiloft</title>
+  <meta name="description" content="Welkom op onze bruiloftswebsite. Bekijk het programma, locatie, RSVP en praktische informatie voor onze grote dag." />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="Nouri & [Naam] | Bruiloft" />
+  <meta property="og:description" content="Bekijk alle informatie over onze bruiloft: datum, locatie, planning en RSVP." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#8c6a4a" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f3ef;
+      --card: rgba(255,255,255,0.78);
+      --ink: #2e241d;
+      --muted: #6d5d51;
+      --line: rgba(140,106,74,0.18);
+      --brand: #8c6a4a;
+      --brand-dark: #6f4f31;
+      --accent: #e8d8c8;
+      --radius: 24px;
+      --shadow: 0 10px 35px rgba(49,33,19,0.1);
+      --max: 1180px;
+    }
 
-<style>
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    color: #333;
-}
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(232,216,200,0.75), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(140,106,74,0.08), transparent 30%),
+        var(--bg);
+      line-height: 1.6;
+    }
 
-header {
-    height: 100vh;
-    background: url('https://images.unsplash.com/photo-1529634792982-8c09a3f8e4ff') center/cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-align: center;
-}
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
 
-header h1 {
-    font-size: 3rem;
-    margin: 0;
-}
+    .container {
+      width: min(100% - 32px, var(--max));
+      margin: 0 auto;
+    }
 
-header p {
-    font-size: 1.5rem;
-}
+    .glass {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.55);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: var(--radius);
+    }
 
-section {
-    padding: 60px 20px;
-    max-width: 900px;
-    margin: auto;
-}
+    .nav {
+      position: sticky;
+      top: 14px;
+      z-index: 50;
+      padding: 14px 0 0;
+    }
 
-h2 {
-    text-align: center;
-    margin-bottom: 30px;
-}
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 20px;
+    }
 
-.timeline {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
 
-.event {
-    border-left: 3px solid #c89b6d;
-    padding-left: 15px;
-}
+    .brand b {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      line-height: 1;
+    }
 
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 10px;
-}
+    .brand span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
 
-.gallery img {
-    width: 100%;
-    border-radius: 10px;
-}
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
 
-.rsvp {
-    text-align: center;
-}
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
 
-button {
-    padding: 12px 20px;
-    background: #c89b6d;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+    .nav-links a:hover { color: var(--brand-dark); }
 
-footer {
-    text-align: center;
-    padding: 30px;
-    background: #f5f5f5;
-}
-</style>
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 999px;
+      padding: 13px 20px;
+      border: 0;
+      cursor: pointer;
+      font-weight: 600;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
 
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: linear-gradient(180deg, var(--brand), var(--brand-dark));
+      color: white;
+      box-shadow: 0 10px 25px rgba(111,79,49,.25);
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,.8);
+      color: var(--brand-dark);
+      border: 1px solid var(--line);
+    }
+
+    .hero {
+      position: relative;
+      padding: 34px 0 24px;
+    }
+
+    .hero-card {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 28px;
+      padding: 22px;
+      overflow: hidden;
+    }
+
+    .hero-image {
+      min-height: 520px;
+      border-radius: calc(var(--radius) - 8px);
+      background:
+        linear-gradient(180deg, rgba(28,18,10,.15), rgba(28,18,10,.35)),
+        url('https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1400&q=80') center/cover;
+      position: relative;
+      box-shadow: inset 0 -80px 120px rgba(0,0,0,.15);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: auto 20px 20px 20px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 12px;
+    }
+
+    .hero-overlay small {
+      display: block;
+      opacity: .92;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-size: .72rem;
+      margin-bottom: 6px;
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 14px 6px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(232,216,200,.85);
+      color: var(--brand-dark);
+      font-size: .8rem;
+      margin-bottom: 18px;
+      border: 1px solid rgba(140,106,74,.14);
+    }
+
+    .eyebrow::before {
+      content: '♥';
+      font-size: .85rem;
+    }
+
+    h1, h2, h3 { margin: 0; line-height: 1.05; }
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 8vw, 5rem);
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .hero-copy p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin: 0 0 22px;
+      max-width: 54ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .meta-item {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.72);
+      border: 1px solid var(--line);
+    }
+
+    .meta-item small { display: block; color: var(--muted); margin-bottom: 6px; }
+    .meta-item strong { font-size: 1rem; }
+
+    .section { padding: 26px 0; }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.15rem);
+      margin-bottom: 8px;
+    }
+    .section-subtitle {
+      color: var(--muted);
+      max-width: 68ch;
+      margin-bottom: 26px;
+    }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+    .card { padding: 24px; }
+
+    .story-card p, .faq-item p, .info-card p, .rsvp-card p { color: var(--muted); }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 20px;
+    }
+    .stat { padding: 18px; border-radius: 18px; background: rgba(255,255,255,.7); border: 1px solid var(--line); }
+    .stat b { display:block; font-size: 1.3rem; color: var(--brand-dark); margin-bottom: 4px; }
+    .stat span { color: var(--muted); font-size: .94rem; }
+
+    .timeline { position: relative; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 4px;
+      bottom: 4px;
+      width: 2px;
+      background: linear-gradient(var(--brand), rgba(140,106,74,.18));
+    }
+    .timeline-item {
+      position: relative;
+      padding-left: 56px;
+      margin-bottom: 22px;
+    }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 12px;
+      top: 6px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: white;
+      border: 4px solid var(--brand);
+      box-shadow: 0 0 0 6px rgba(140,106,74,.08);
+    }
+    .timeline-time {
+      display: inline-block;
+      color: var(--brand-dark);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .map-card {
+      overflow: hidden;
+      min-height: 100%;
+    }
+    .map-frame {
+      border: 0;
+      width: 100%;
+      min-height: 340px;
+      border-radius: calc(var(--radius) - 10px);
+      filter: grayscale(.1) contrast(1.05);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .chip {
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(232,216,200,.65);
+      border: 1px solid rgba(140,106,74,.12);
+      color: var(--brand-dark);
+      font-size: .92rem;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr 1fr;
+      gap: 14px;
+    }
+    .gallery .tile {
+      position: relative;
+      overflow: hidden;
+      min-height: 240px;
+      border-radius: 22px;
+      background-size: cover;
+      background-position: center;
+      box-shadow: var(--shadow);
+    }
+    .gallery .tile.tall { min-height: 494px; }
+    .gallery .tile span {
+      position: absolute;
+      left: 16px;
+      bottom: 16px;
+      color: white;
+      font-weight: 600;
+      background: rgba(0,0,0,.24);
+      padding: 8px 12px;
+      border-radius: 999px;
+      backdrop-filter: blur(10px);
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 14px;
+    }
+    .faq-item {
+      padding: 18px 20px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.74);
+      border: 1px solid var(--line);
+    }
+    .faq-item h3 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+      color: var(--brand-dark);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    label {
+      display: block;
+      font-size: .94rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--brand-dark);
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(140,106,74,.2);
+      background: rgba(255,255,255,.9);
+      color: var(--ink);
+      font: inherit;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.45);
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: 2px solid rgba(140,106,74,.18);
+      border-color: var(--brand);
+    }
+    textarea { min-height: 140px; resize: vertical; }
+    .full { grid-column: 1 / -1; }
+
+    .footer {
+      padding: 50px 0 38px;
+      color: var(--muted);
+    }
+    .footer-card {
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .footer small { display: block; }
+
+    .notice {
+      border-left: 4px solid var(--brand);
+      padding: 16px 18px;
+      background: rgba(232,216,200,.45);
+      border-radius: 16px;
+      color: var(--brand-dark);
+    }
+
+    @media (max-width: 980px) {
+      .hero-card, .grid-2, .grid-3, .gallery {
+        grid-template-columns: 1fr;
+      }
+      .gallery .tile.tall { min-height: 260px; }
+      .hero-image { min-height: 380px; }
+      .hero-meta, .stats, .form-grid { grid-template-columns: 1fr; }
+      .timeline::before { left: 18px; }
+    }
+
+    @media (max-width: 720px) {
+      .nav-inner { padding: 14px; }
+      .nav-links { display: none; }
+      .hero-card { padding: 14px; gap: 18px; }
+      .hero-copy { padding: 6px; }
+      .section { padding: 18px 0; }
+      .card { padding: 18px; }
+      .hero-overlay { left: 14px; right: 14px; bottom: 14px; }
+    }
+  </style>
 </head>
-
 <body>
-
-<header>
-    <div>
-        <h1>Nouri & Partner</h1>
-        <p>Wij gaan trouwen — 12 september 2026</p>
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-inner glass">
+        <div class="brand">
+          <b>Nouri & [Naam]</b>
+          <span>Bruiloft • 14 september 2026</span>
+        </div>
+        <div class="nav-links">
+          <a href="#verhaal">Ons verhaal</a>
+          <a href="#programma">Programma</a>
+          <a href="#locatie">Locatie</a>
+          <a href="#gallery">Foto's</a>
+          <a href="#faq">Praktisch</a>
+          <a href="#rsvp" class="btn btn-primary" style="padding:10px 16px;">RSVP</a>
+        </div>
+      </div>
     </div>
-</header>
+  </nav>
 
-<section>
-    <h2>Ons Verhaal</h2>
-    <p>
-        Hier komt jullie verhaal. Hoe jullie elkaar hebben ontmoet, het aanzoek,
-        en waarom deze dag zo bijzonder is.
-    </p>
-</section>
-
-<section>
-    <h2>Dagplanning</h2>
-    <div class="timeline">
-        <div class="event">
-            <strong>13:00</strong> Ceremonie
+  <header class="hero">
+    <div class="container">
+      <div class="hero-card glass">
+        <div class="hero-image">
+          <div class="hero-overlay">
+            <div>
+              <small>Save the date</small>
+              <div style="font-size:1.35rem;font-weight:700;">14 september 2026</div>
+            </div>
+            <div style="text-align:right;">
+              <small>Locatie</small>
+              <div style="font-size:1.1rem;font-weight:600;">Delft / Den Haag</div>
+            </div>
+          </div>
         </div>
-        <div class="event">
-            <strong>15:00</strong> Receptie
+        <div class="hero-copy">
+          <div class="eyebrow">Wij gaan trouwen</div>
+          <h1>Nouri <span style="font-weight:400;">&</span> [Naam]</h1>
+          <p>Welkom op onze trouwwebsite. Hier vind je alle informatie voor onze grote dag: het programma, de locatie, praktische tips én de RSVP. Pas alle tekst hieronder eenvoudig aan naar jullie eigen details.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#rsvp">Laat weten of je komt</a>
+            <a class="btn btn-secondary" href="#programma">Bekijk het programma</a>
+          </div>
+          <div class="hero-meta">
+            <div class="meta-item">
+              <small>Datum</small>
+              <strong>14 september 2026</strong>
+            </div>
+            <div class="meta-item">
+              <small>Dresscode</small>
+              <strong>Elegant / feestelijk</strong>
+            </div>
+            <div class="meta-item">
+              <small>RSVP vóór</small>
+              <strong>1 augustus 2026</strong>
+            </div>
+          </div>
         </div>
-        <div class="event">
-            <strong>18:00</strong> Diner
-        </div>
-        <div class="event">
-            <strong>21:00</strong> Feest
-        </div>
+      </div>
     </div>
-</section>
+  </header>
 
-<section>
-    <h2>Locatie</h2>
-    <p>
-        Trouwlocatie naam<br>
-        Straat 123, Rotterdam
-    </p>
-</section>
+  <main>
+    <section class="section" id="verhaal">
+      <div class="container grid-2">
+        <div class="card glass story-card">
+          <h2 class="section-title">Ons verhaal</h2>
+          <p>Hier kun je jullie verhaal kwijt: hoe jullie elkaar hebben leren kennen, het aanzoek en waarom deze dag zo bijzonder is. Vervang deze voorbeeldtekst door jullie eigen verhaal.</p>
+          <p>Je kunt dit blok ook opdelen in meerdere korte alinea’s of zelfs een tijdlijn maken met belangrijke momenten. Hou het persoonlijk en warm.</p>
+          <div class="stats">
+            <div class="stat">
+              <b>2019</b>
+              <span>De eerste ontmoeting</span>
+            </div>
+            <div class="stat">
+              <b>2024</b>
+              <span>Het aanzoek</span>
+            </div>
+            <div class="stat">
+              <b>2026</b>
+              <span>Onze trouwdag</span>
+            </div>
+          </div>
+        </div>
+        <div class="card glass info-card">
+          <h2 class="section-title">Belangrijke info</h2>
+          <p>Gebruik dit blok voor een korte samenvatting van de dag en belangrijke punten zoals ceremonie, diner en feest. Je kunt hier ook aangeven of kinderen welkom zijn, of er halal/vegetarische opties zijn en hoe laat gasten worden verwacht.</p>
+          <div class="chips">
+            <span class="chip">Ceremonie</span>
+            <span class="chip">Receptie</span>
+            <span class="chip">Diner</span>
+            <span class="chip">Feest</span>
+            <span class="chip">Parkeren in de buurt</span>
+            <span class="chip">OV bereikbaar</span>
+          </div>
+          <div class="notice" style="margin-top: 16px;">
+            <strong>Tip:</strong> wil je meerdere talen? Maak dan een tweede pagina zoals <code>en.html</code> en zet bovenin een taalwissel in het menu.
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section>
-    <h2>Galerij</h2>
-    <div class="gallery">
-        https://images.unsplash.com/photo-1511285560929-80b456fea0bc
-        https://images.unsplash.com/photo-1507504031003-b417219a0fde
-        https://images.unsplash.com/photo-1503342217505-b0a15ec3261c
+    <section class="section" id="programma">
+      <div class="container grid-2">
+        <div class="card glass">
+          <h2 class="section-title">Programma</h2>
+          <p class="section-subtitle">Voorbeeldplanning — pas tijden en onderdelen eenvoudig aan.</p>
+          <div class="timeline">
+            <div class="timeline-item">
+              <span class="timeline-time">13:30</span>
+              <h3>Ontvangst gasten</h3>
+              <p>Welkom met koffie, thee en iets lekkers.</p>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-time">14:30</span>
+              <h3>Ceremonie</h3>
+              <p>Het officiële moment waarop wij elkaar het jawoord geven.</p>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-time">16:00</span>
+              <h3>Foto's & receptie</h3>
+              <p>Tijd om samen te proosten en foto’s te maken.</p>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-time">18:30</span>
+              <h3>Diner</h3>
+              <p>Gezamenlijk diner met onze dierbaren.</p>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-time">21:00</span>
+              <h3>Feest</h3>
+              <p>Muziek, dansen en genieten tot in de late uurtjes.</p>
+            </div>
+          </div>
+        </div>
+        <div class="card glass" id="locatie">
+          <h2 class="section-title">Locatie</h2>
+          <p class="section-subtitle">Vervang dit door jullie echte trouwlocatie en route-informatie.</p>
+          <div style="margin-bottom:14px;">
+            <strong>Trouwlocatie:</strong><br />
+            De Mooie Locatie<br />
+            Voorbeeldstraat 12<br />
+            2611 XX Delft
+          </div>
+          <iframe class="map-frame" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Delft&output=embed"></iframe>
+          <div class="chips">
+            <span class="chip">5 min lopen vanaf station</span>
+            <span class="chip">Parkeergarage om de hoek</span>
+            <span class="chip">Hotels in de buurt</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="gallery">
+      <div class="container">
+        <h2 class="section-title">Foto’s</h2>
+        <p class="section-subtitle">Vervang deze voorbeeldafbeeldingen door jullie eigen foto’s. Zet afbeeldingen bijvoorbeeld in een map <code>images/</code> en verwijs ernaar in de code.</p>
+        <div class="gallery">
+          <div class="tile tall" style="background-image:url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80');">
+            <span>Onze favoriete herinnering</span>
+          </div>
+          <div class="tile" style="background-image:url('https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=900&q=80');">
+            <span>Save the date</span>
+          </div>
+          <div class="tile" style="background-image:url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=80');">
+            <span>Onze dag</span>
+          </div>
+          <div class="tile" style="background-image:url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=80');">
+            <span>Met familie & vrienden</span>
+          </div>
+          <div class="tile" style="background-image:url('https://images.unsplash.com/photo-1525258946800-98cfd641d0de?auto=format&fit=crop&w=900&q=80');">
+            <span>Tot snel!</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container grid-2">
+        <div>
+          <h2 class="section-title">Praktische info</h2>
+          <p class="section-subtitle">Volgens bronnen bevatten goede trouwwebsites meestal praktische informatie zoals locatie, dagplanning, RSVP, foto’s en jullie verhaal. Deze template bevat daarom precies die onderdelen. </p>
+          <div class="faq-list">
+            <div class="faq-item">
+              <h3>Is er een dresscode?</h3>
+              <p>Ja, feestelijk / elegant. Vermijd indien gewenst een specifieke kleur en voeg dat hier toe.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Kunnen dieetwensen worden doorgegeven?</h3>
+              <p>Ja, gebruik het RSVP-formulier hieronder om dieetwensen of allergieën door te geven.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Waar kan ik parkeren?</h3>
+              <p>Voeg hier de dichtstbijzijnde parkeergelegenheid of OV-route toe.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Mogen kinderen mee?</h3>
+              <p>Vul hier jullie keuze in, zodat het voor gasten meteen duidelijk is.</p>
+            </div>
+          </div>
+        </div>
+        <div class="card glass rsvp-card" id="rsvp">
+          <h2 class="section-title">RSVP</h2>
+          <p>Laat ons weten of je erbij bent. Dit formulier gebruikt geen backend; standaard wordt een bevestiging in beeld getoond. Wil je echt reacties per e-mail ontvangen, vervang dan de <code>action</code> van het formulier later door een dienst zoals FormSubmit of je eigen backend.</p>
+          <form id="rsvpForm" novalidate>
+            <div class="form-grid">
+              <div>
+                <label for="name">Naam</label>
+                <input id="name" name="name" type="text" placeholder="Jouw naam" required />
+              </div>
+              <div>
+                <label for="email">E-mail</label>
+                <input id="email" name="email" type="email" placeholder="jij@email.nl" required />
+              </div>
+              <div>
+                <label for="attendance">Kom je?</label>
+                <select id="attendance" name="attendance" required>
+                  <option value="">Maak een keuze</option>
+                  <option>Ja, ik ben erbij</option>
+                  <option>Helaas, ik kan niet</option>
+                  <option>Misschien / nog niet zeker</option>
+                </select>
+              </div>
+              <div>
+                <label for="guests">Aantal personen</label>
+                <select id="guests" name="guests">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                </select>
+              </div>
+              <div class="full">
+                <label for="diet">Dieetwensen / allergieën</label>
+                <input id="diet" name="diet" type="text" placeholder="Bijvoorbeeld vegetarisch, halal of notenallergie" />
+              </div>
+              <div class="full">
+                <label for="message">Bericht</label>
+                <textarea id="message" name="message" placeholder="Laat een leuke boodschap achter"></textarea>
+              </div>
+            </div>
+            <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:16px; align-items:center;">
+              <button type="submit" class="btn btn-primary">Verstuur RSVP</button>
+              <a href="mailto:info@jouwdomein.nl?subject=RSVP%20Bruiloft" class="btn btn-secondary">Liever via e-mail</a>
+            </div>
+          </form>
+          <p id="formStatus" style="display:none; margin-top:14px; color: var(--brand-dark); font-weight:600;"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-card glass">
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:2rem;line-height:1;">Nouri & [Naam]</div>
+          <small>Met liefde gemaakt • 14 september 2026</small>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <a class="btn btn-secondary" href="#verhaal">Ons verhaal</a>
+          <a class="btn btn-primary" href="#rsvp">RSVP</a>
+        </div>
+      </div>
     </div>
-</section>
+  </footer>
 
-<section class="rsvp">
-    <h2>RSVP</h2>
-    <p>Laat ons weten of je erbij bent</p>
-    <button>Aanmelden</button>
-</section>
+  <script>
+    const form = document.getElementById('rsvpForm');
+    const statusEl = document.getElementById('formStatus');
 
-<footer>
-    <p>© 2026 Nouri & Partner</p>
-</footer>
-
+    form?.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        statusEl.style.display = 'block';
+        statusEl.textContent = 'Vul eerst de verplichte velden in.';
+        return;
+      }
+      const data = new FormData(form);
+      const name = data.get('name') || 'je';
+      statusEl.style.display = 'block';
+      statusEl.textContent = `Dankjewel ${name}! Je RSVP is lokaal geregistreerd. Sluit later een e-maildienst aan om reacties echt te ontvangen.`;
+      form.reset();
+    });
+  </script>
 </body>
 </html>
